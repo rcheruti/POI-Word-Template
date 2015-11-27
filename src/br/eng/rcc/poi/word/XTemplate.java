@@ -26,15 +26,6 @@ public class XTemplate extends HashMap<String, String>{
     public XTemplate(XWPFDocument docx){ this(docx, 0 ); }
     public XTemplate(XWPFDocument docx, int flags){ this.docx = docx; this.regexFlags = flags; }
     
-    @Override
-    public Set<Entry<String, String>> entrySet(){
-        Set<String> keys = this.keySet();
-        Set<Entry<String, String>> entrys = new HashSet<>( this.size()+1 );
-        for( String k : keys ){
-            entrys.add( new SimpleImmutableEntry(k, this.get(k) ) );
-        }
-        return entrys;
-    }
     
     public void apply(){
         apply(false);
