@@ -14,6 +14,9 @@ import org.apache.poi.xwpf.usermodel.XWPFFooter;
 import org.apache.poi.xwpf.usermodel.XWPFHeader;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.XWPFTableCell;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 
 public class XTemplate extends HashMap<String, String>{
     
@@ -45,6 +48,10 @@ public class XTemplate extends HashMap<String, String>{
         }
         for( XWPFHeader x : this.docx.getHeaderList() )  _apply( x.getParagraphs() );
         for( XWPFFooter x : this.docx.getFooterList() )  _apply( x.getParagraphs() );
+        for( XWPFTable x : this.docx.getTables() )
+          for( XWPFTableRow r : x.getRows() )
+            for( XWPFTableCell c : r.getTableCells() )
+              _apply( c.getParagraphs() );
         _apply( this.docx.getParagraphs() );
     }
     
